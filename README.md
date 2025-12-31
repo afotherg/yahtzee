@@ -2,6 +2,7 @@
 
 This repository contains a browser-based Yahtzee implementation where a human plays against a computer using an optimal, table-driven strategy. It also vendors the original Pascal sources used to generate the optimal-strategy tables, and the precomputed binary tables themselves.
 
+- Implemented using Codex
 - Web app lives in `web/` (pure client-side HTML/CSS/JS).
 - Optimal expected-score tables live in `gstbl/` as binary files.
 - Original Pascal sources are in `YahtzeeTrainerLazarus/` for reference.
