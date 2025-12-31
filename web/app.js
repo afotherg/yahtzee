@@ -1,4 +1,4 @@
-import { loadGstbl, loadGstblFromJson, initialGameState, Categories, CategoryNames, countsOfRoll, adviceForRoll, playAiTurn, formatKeepers, applyScoreEvent, finalCategoryEVs } from './logic.js';
+import { loadGstbl, loadGstblFromJson, initialGameState, Categories, CategoryNames, countsOfRoll, adviceForRoll, playAiTurn, formatKeepers, applyScoreEvent, finalCategoryEVs } from './logic.js?v=20251231-1';
 
 const el = (id)=>document.getElementById(id);
 const logEl = el('log');
@@ -309,8 +309,9 @@ el('scoreBtn').addEventListener('click', ()=>{
 (async function init(){
   const status = el('loadStatus');
   status.textContent = 'Loading optimal table…';
-  const jsonPaths = [ 'gstbl/OptEScore-Official.json', '../gstbl/OptEScore-Official.json' ];
-  const binPaths = [ 'gstbl/OptEScore-Official.gstbl', '../gstbl/OptEScore-Official.gstbl' ];
+  const v = '20251231-1';
+  const jsonPaths = [ `gstbl/OptEScore-Official.json?v=${v}`, `../gstbl/OptEScore-Official.json?v=${v}` ];
+  const binPaths = [ `gstbl/OptEScore-Official.gstbl?v=${v}`, `../gstbl/OptEScore-Official.gstbl?v=${v}` ];
   let lastErr = null;
   for (const p of jsonPaths) {
     try {
