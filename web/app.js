@@ -50,7 +50,7 @@ function renderScoreboard(target, sc, isHuman){
     const act = document.createElement('div');
     act.className = 'actcell';
     // Action button only for human, category available, and after first roll
-    if (isHuman && humanGS.free.has(c) && rollsLeft < 3) {
+    if (isHuman && humansTurn && humanGS.free.has(c) && rollsLeft < 3) {
       const btn = document.createElement('button');
       btn.className = 'actbtn';
       const potential = applyScoreEvent(humanGS, countsOfRoll(humanRoll), c).score;
