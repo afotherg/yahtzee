@@ -39,6 +39,15 @@ button:hover:not([disabled]) { border-color: var(--accent); }
 .pip { position: absolute; width: 11px; height: 11px; background: #111; border-radius: 50%; transform: translate(-50%, -50%); pointer-events: none; box-shadow: 0 0 0 1px rgba(0,0,0,.15) inset; z-index: 1; }
 .die .unknown { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 26px; color: var(--muted); z-index: 0; }
 
+/* Subtle roll animation */
+.die.roll-anim { animation: rollWobble 240ms ease; }
+@keyframes rollWobble {
+  0%   { transform: rotate(0deg) scale(1); }
+  20%  { transform: rotate(8deg) scale(1.03); }
+  70%  { transform: rotate(-5deg) scale(0.98); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
 .info { display: flex; gap: 24px; color: var(--muted); font-size: 14px; margin-top: 4px; }
 .info span { color: var(--text); }
 

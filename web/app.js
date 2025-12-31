@@ -18,6 +18,7 @@ let rollsLeft = 3;
 let humansTurn = true;
 let suggestedBestCategory = null;
 let showAdvice = true;
+let rollingDiceMask = null; // which dice are animating this render
 
 // Simple cookie helpers
 function setCookie(name, value, days=365){
@@ -61,6 +62,7 @@ function renderDice(){
   const dice = el('dice'); dice.innerHTML='';
   for (let i=0;i<5;i++){
     const d = document.createElement('div'); d.className='die' + (keptMask[i]?' kept':'');
+    if (rollingDiceMask && rollingDiceMask[i]) d.classList.add('roll-anim');
     // Show question marks before the first roll of a turn; otherwise render pips
     const showUnknown = humansTurn && rollsLeft===3;
     renderDieFace(d, showUnknown ? null : humanRoll[i]);
@@ -187,15 +189,20 @@ function renderEVPanel(){
 function doRoll(){
   if (!canRoll()) return;
   // Build keepers based on keptMask; re-roll others
+  const willReroll = [];
   for (let i=0;i<5;i++){
+    willReroll[i] = !keptMask[i];
     if (!keptMask[i]) humanRoll[i] = 1 + Math.floor(rng()*6);
   }
+  rollingDiceMask = willReroll;
   rollsLeft--;
   if (rollsLeft===2) {
     // First roll happened; now can toggle keeps
     keptMask = humanRoll.map(()=>false);
   }
   renderAll();
+  // Clear animation mask so it only applies for this render
+  setTimeout(()=>{ rollingDiceMask = null; }, 0);
 }
 
 function scoreHuman(cat){
