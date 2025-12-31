@@ -36,13 +36,16 @@
             <button id="newGameBtn">New Game</button>
             <button id="rollBtn" disabled>Roll</button>
             <button id="scoreBtn" disabled>Score Selected</button>
+            <label style="margin-left:12px; display:flex; align-items:center; gap:6px; font-size:13px; color:#a7b0bc;">
+              <input type="checkbox" id="adviceToggle" /> Show Advice
+            </label>
           </div>
 
           <div class="dice" id="dice"></div>
 
           <div class="info">
             <div>Rolls left: <span id="rollsLeft">3</span></div>
-            <div>Advice: <span id="advice">—</span></div>
+            <div id="adviceRow">Advice: <span id="advice">—</span></div>
           </div>
 
           <div class="ev" id="evPanel" style="display:none; margin-top:8px; color:#a7b0bc;">

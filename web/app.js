@@ -17,6 +17,17 @@ let keptMask = [false,false,false,false,false];
 let rollsLeft = 3;
 let humansTurn = true;
 let suggestedBestCategory = null;
+let showAdvice = true;
+
+// Simple cookie helpers
+function setCookie(name, value, days=365){
+  const expires = new Date(Date.now()+days*864e5).toUTCString();
+  document.cookie = name+"="+encodeURIComponent(value)+"; Expires="+expires+"; Path=/";
+}
+function getCookie(name){
+  const m = document.cookie.match('(?:^|; )'+name.replace(/([.$?*|{}()\[\]\\/+^])/g,'\\$1')+'=([^;]*)');
+  return m ? decodeURIComponent(m[1]) : null;
+}
 
 function resetScoreCard(sc){
   for (let c=0;c<=Categories.Chance;c++) sc[c]=null;
@@ -71,7 +82,7 @@ function renderCategories(){
     const b = document.createElement('div'); b.className='cat'; b.textContent = CategoryNames[c];
     const disabled = !humanGS.free.has(c);
     if (disabled) b.classList.add('disabled');
-    if (!disabled && rollsLeft===0 && suggestedBestCategory===c) b.classList.add('best');
+    if (showAdvice && !disabled && rollsLeft===0 && suggestedBestCategory===c) b.classList.add('best');
     b.addEventListener('click', ()=>{
       // Allow scoring on any roll after the first (standard Yahtzee rule)
       if (!humansTurn || disabled || rollsLeft===3) return;
@@ -92,13 +103,15 @@ function canRoll(){ return rollsLeft>0; }
 function updateAdvice(){
   const adviceEl = el('advice');
   suggestedBestCategory = null;
-  if (!gstbl) { adviceEl.textContent='—'; return; }
+  if (!gstbl) { adviceEl.textContent='—'; el('adviceRow').style.display='none'; return; }
+  if (!showAdvice) { adviceEl.textContent=''; el('adviceRow').style.display='none'; renderEVPanel(); return; }
   if (!humansTurn) { adviceEl.textContent='Computer is thinking…'; return; }
   if (rollsLeft===3) { adviceEl.textContent='Press Roll to start turn.'; return; }
   const adv = adviceForRoll(humanGS, humanRoll, rollsLeft, gstbl);
   if (adv.type==='keep') adviceEl.textContent = 'Keep ' + formatKeepers(adv.keep);
   else { adviceEl.textContent = 'Score ' + CategoryNames[adv.category]; suggestedBestCategory = adv.category; }
   renderEVPanel();
+  el('adviceRow').style.display='';
 }
 
 function newGame(){
@@ -119,12 +132,14 @@ function renderAll(){
   el('turnStatus').textContent = humansTurn ? 'Your turn' : 'Computer turn';
   setButtons();
   updateAdvice();
+  const tgl = el('adviceToggle');
+  if (tgl) tgl.checked = !!showAdvice;
 }
 
 function renderEVPanel(){
   const panel = el('evPanel');
   const list = el('evList');
-  if (!gstbl || !humansTurn || rollsLeft>0){ panel.style.display='none'; list.innerHTML=''; return; }
+  if (!showAdvice || !gstbl || !humansTurn || rollsLeft>0){ panel.style.display='none'; list.innerHTML=''; return; }
   const evs = finalCategoryEVs(humanGS, humanRoll, gstbl);
   list.innerHTML = '';
   for (const {category, ev} of evs){
