@@ -46,10 +46,10 @@ function renderScoreboard(target, sc, isHuman){
   container.innerHTML = '';
   for (let c=0;c<=Categories.Chance;c++) {
     const row = document.createElement('div'); row.className='row';
-    const lab = document.createElement('div'); lab.className='label'; lab.textContent = CategoryNames[c];
-    const act = document.createElement('div');
-    act.className = 'actcell';
-    // Action button only for human, category available, and after first roll
+    const lab = document.createElement('div'); lab.className='label';
+    const nameSpan = document.createElement('span'); nameSpan.className = 'name'; nameSpan.textContent = CategoryNames[c];
+    lab.appendChild(nameSpan);
+    // Inline action button next to label for human, available category, after first roll
     if (isHuman && humansTurn && humanGS.free.has(c) && rollsLeft < 3) {
       const btn = document.createElement('button');
       btn.className = 'actbtn';
@@ -57,20 +57,27 @@ function renderScoreboard(target, sc, isHuman){
       btn.textContent = `+${potential}`;
       btn.title = `Score ${potential} in ${CategoryNames[c]}`;
       btn.addEventListener('click', ()=> scoreHuman(c));
-      act.appendChild(btn);
-    } else {
-      // empty placeholder to keep grid alignment
-      act.textContent = '';
+      lab.appendChild(btn);
     }
     const val = document.createElement('div'); val.className='value'; val.textContent = sc[c]==null ? '—' : sc[c];
-    row.appendChild(lab); row.appendChild(act); row.appendChild(val);
+    row.appendChild(lab); row.appendChild(val);
     container.appendChild(row);
+
+    // After Sixes, insert a single highlighted Upper Subtotal + Bonus row
+    if (c === Categories.Sixes) {
+      const sub = sumUpper(sc);
+      const bonusVal = sub >= 63 ? 35 : '—';
+      const r = document.createElement('div'); r.className='row';
+      const l = document.createElement('div'); l.className='label hl'; l.textContent = `Upper Subtotal is ${sub}. Bonus of 35 if >=63`;
+      const v = document.createElement('div'); v.className='value'; v.textContent = bonusVal;
+      r.appendChild(l); r.appendChild(v);
+      container.appendChild(r);
+    }
   }
   const totalRow = document.createElement('div'); totalRow.className='row';
   const lab = document.createElement('div'); lab.className='label'; lab.textContent = 'Total';
   const val = document.createElement('div'); val.className='value'; val.textContent = grandTotal(sc);
-  const spacer = document.createElement('div'); spacer.textContent='';
-  totalRow.appendChild(lab); totalRow.appendChild(spacer); totalRow.appendChild(val);
+  totalRow.appendChild(lab); totalRow.appendChild(val);
   container.appendChild(totalRow);
 }
 
