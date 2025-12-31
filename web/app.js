@@ -61,9 +61,9 @@ function renderDice(){
   const dice = el('dice'); dice.innerHTML='';
   for (let i=0;i<5;i++){
     const d = document.createElement('div'); d.className='die' + (keptMask[i]?' kept':'');
-    // Show question marks before the first roll of a turn
+    // Show question marks before the first roll of a turn; otherwise render pips
     const showUnknown = humansTurn && rollsLeft===3;
-    d.textContent = showUnknown ? '?' : humanRoll[i];
+    renderDieFace(d, showUnknown ? null : humanRoll[i]);
     const k = document.createElement('div'); k.className='keep'; k.textContent = keptMask[i]?'kept':''; d.appendChild(k);
     d.addEventListener('click',()=>{
       if (!humansTurn || rollsLeft===3) return; // cannot keep before first roll
@@ -74,6 +74,38 @@ function renderDice(){
     });
     dice.appendChild(d);
   }
+}
+
+function renderDieFace(container, value){
+  // value: 1..6 or null for unknown
+  container.innerHTML = '';
+  if (value == null){
+    const unk = document.createElement('div');
+    unk.className = 'unknown';
+    unk.textContent = '?';
+    container.appendChild(unk);
+    return;
+  }
+  const face = document.createElement('div');
+  face.className = 'die-face';
+  const xs = [15, 50, 85];
+  const ys = [15, 50, 85];
+  const add = (r,c)=>{
+    const p=document.createElement('div');
+    p.className='pip';
+    p.style.left = xs[c-1] + '%';
+    p.style.top  = ys[r-1] + '%';
+    face.appendChild(p);
+  };
+  switch (value){
+    case 1: add(2,2); break;
+    case 2: add(1,1); add(3,3); break;
+    case 3: add(1,1); add(2,2); add(3,3); break;
+    case 4: add(1,1); add(1,3); add(3,1); add(3,3); break;
+    case 5: add(1,1); add(1,3); add(2,2); add(3,1); add(3,3); break;
+    case 6: add(1,1); add(1,3); add(2,1); add(2,3); add(3,1); add(3,3); break;
+  }
+  container.appendChild(face);
 }
 
 function renderCategories(){

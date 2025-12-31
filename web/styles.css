@@ -34,6 +34,11 @@ button:hover:not([disabled]) { border-color: var(--accent); }
 .die.kept { outline: 2px solid var(--good); }
 .die .keep { position: absolute; bottom: 4px; right: 4px; font-size: 11px; color: var(--muted); }
 
+/* Dice pips */
+.die-face { position: relative; width: 100%; height: 100%; }
+.pip { position: absolute; width: 12px; height: 12px; background: var(--text); border-radius: 50%; transform: translate(-50%, -50%); }
+.die .unknown { font-size: 26px; color: var(--muted); }
+
 .info { display: flex; gap: 24px; color: var(--muted); font-size: 14px; margin-top: 4px; }
 .info span { color: var(--text); }
 
@@ -50,4 +55,3 @@ button:hover:not([disabled]) { border-color: var(--accent); }
 @media (max-width: 900px) {
   #categories { grid-template-columns: repeat(4, 1fr); }
 }
-
