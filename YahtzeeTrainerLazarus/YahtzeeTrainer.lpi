@@ -1,0 +1,471 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <ProjectOptions>
+    <PathDelim Value="/"/>
+    <Version Value="5"/>
+    <General>
+      <Flags>
+        <MainUnitHasUsesSectionForAllUnits Value="False"/>
+        <MainUnitHasCreateFormStatements Value="False"/>
+        <MainUnitHasTitleStatement Value="False"/>
+      </Flags>
+      <MainUnit Value="0"/>
+      <ActiveEditorIndexAtStart Value="9"/>
+      <IconPath Value="./"/>
+      <TargetFileExt Value=""/>
+      <Title Value="Yahtzee Trainer"/>
+    </General>
+    <JumpHistory Count="0" HistoryIndex="-1"/>
+    <Units Count="45">
+      <Unit0>
+        <CursorPos X="1" Y="32"/>
+        <EditorIndex Value="0"/>
+        <Filename Value="YahtzeeTrainer.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="144"/>
+      </Unit0>
+      <Unit1>
+        <CursorPos X="69" Y="29"/>
+        <EditorIndex Value="21"/>
+        <Filename Value="settings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="34"/>
+        <UnitName Value="Settings"/>
+        <UsageCount Value="143"/>
+      </Unit1>
+      <Unit2>
+        <CursorPos X="25" Y="297"/>
+        <EditorIndex Value="10"/>
+        <Filename Value="yahtzeestrategies.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="274"/>
+        <UnitName Value="YahtzeeStrategies"/>
+        <UsageCount Value="143"/>
+      </Unit2>
+      <Unit3>
+        <CursorPos X="2" Y="266"/>
+        <EditorIndex Value="20"/>
+        <Filename Value="dicedevils.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="229"/>
+        <UnitName Value="DiceDevils"/>
+        <UsageCount Value="143"/>
+      </Unit3>
+      <Unit4>
+        <CursorPos X="22" Y="53"/>
+        <EditorIndex Value="11"/>
+        <Filename Value="generalstuff.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="36"/>
+        <UnitName Value="GeneralStuff"/>
+        <UsageCount Value="143"/>
+      </Unit4>
+      <Unit5>
+        <CursorPos X="39" Y="265"/>
+        <EditorIndex Value="12"/>
+        <Filename Value="dicestuff.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="139"/>
+        <UnitName Value="DiceStuff"/>
+        <UsageCount Value="143"/>
+      </Unit5>
+      <Unit6>
+        <CursorPos X="15" Y="3"/>
+        <EditorIndex Value="13"/>
+        <Filename Value="mathstuff.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="1"/>
+        <UnitName Value="MathStuff"/>
+        <UsageCount Value="143"/>
+      </Unit6>
+      <Unit7>
+        <CursorPos X="14" Y="223"/>
+        <EditorIndex Value="14"/>
+        <Filename Value="pseudorandomgenerator.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="187"/>
+        <UnitName Value="PseudoRandomGenerator"/>
+        <UsageCount Value="143"/>
+      </Unit7>
+      <Unit8>
+        <CursorPos X="18" Y="17"/>
+        <EditorIndex Value="15"/>
+        <Filename Value="statistics.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="385"/>
+        <UnitName Value="Statistics"/>
+        <UsageCount Value="143"/>
+      </Unit8>
+      <Unit9>
+        <CursorPos X="19" Y="598"/>
+        <EditorIndex Value="16"/>
+        <Filename Value="yahtzeeconcepts.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="571"/>
+        <UnitName Value="YahtzeeConcepts"/>
+        <UsageCount Value="143"/>
+      </Unit9>
+      <Unit10>
+        <CursorPos X="36" Y="222"/>
+        <EditorIndex Value="17"/>
+        <Filename Value="yahtzeeeventlists.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="180"/>
+        <UnitName Value="YahtzeeEventLists"/>
+        <UsageCount Value="143"/>
+      </Unit10>
+      <Unit11>
+        <CursorPos X="9" Y="256"/>
+        <EditorIndex Value="18"/>
+        <Filename Value="yahtzeeextras.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="213"/>
+        <UnitName Value="YahtzeeExtras"/>
+        <UsageCount Value="143"/>
+      </Unit11>
+      <Unit12>
+        <CursorPos X="20" Y="49"/>
+        <EditorIndex Value="19"/>
+        <Filename Value="yahtzeegamerecordings.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="438"/>
+        <UnitName Value="YahtzeeGameRecordings"/>
+        <UsageCount Value="143"/>
+      </Unit12>
+      <Unit13>
+        <CursorPos X="52" Y="445"/>
+        <EditorIndex Value="9"/>
+        <Filename Value="Main.pas"/>
+        <ComponentName Value="MainForm"/>
+        <HasResources Value="True"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <ResourceFilename Value="Main.lrs"/>
+        <TopLine Value="415"/>
+        <UnitName Value="Main"/>
+        <UsageCount Value="143"/>
+      </Unit13>
+      <Unit14>
+        <CursorPos X="14" Y="181"/>
+        <Filename Value="YahtzeeStateTables.pas"/>
+        <TopLine Value="1"/>
+        <UnitName Value="YahtzeeStateTables"/>
+        <UsageCount Value="10"/>
+      </Unit14>
+      <Unit15>
+        <CursorPos X="15" Y="191"/>
+        <EditorIndex Value="8"/>
+        <Filename Value="yahtzeestatetables.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="353"/>
+        <UnitName Value="YahtzeeStateTables"/>
+        <UsageCount Value="143"/>
+      </Unit15>
+      <Unit16>
+        <CursorPos X="19" Y="181"/>
+        <EditorIndex Value="1"/>
+        <Filename Value="tablesettings.pas"/>
+        <ComponentName Value="CreateTableForm"/>
+        <HasResources Value="True"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <ResourceFilename Value="TableSettings.lrs"/>
+        <TopLine Value="20"/>
+        <UnitName Value="TableSettings"/>
+        <UsageCount Value="143"/>
+      </Unit16>
+      <Unit17>
+        <CursorPos X="9" Y="402"/>
+        <EditorIndex Value="6"/>
+        <Filename Value="yahtzeestrategyanalysis.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="373"/>
+        <UnitName Value="YahtzeeStrategyAnalysis"/>
+        <UsageCount Value="143"/>
+      </Unit17>
+      <Unit18>
+        <CursorPos X="20" Y="10"/>
+        <EditorIndex Value="7"/>
+        <Filename Value="yahtzeestateanalyzer.pas"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <TopLine Value="9"/>
+        <UnitName Value="YahtzeeStateAnalyzer"/>
+        <UsageCount Value="143"/>
+      </Unit18>
+      <Unit19>
+        <CursorPos X="50" Y="190"/>
+        <EditorIndex Value="5"/>
+        <Filename Value="ScoreCards.pas"/>
+        <ComponentName Value="ScoreCardForm"/>
+        <HasResources Value="True"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <ResourceFilename Value="ScoreCards.lrs"/>
+        <TopLine Value="139"/>
+        <UnitName Value="ScoreCards"/>
+        <UsageCount Value="139"/>
+      </Unit19>
+      <Unit20>
+        <CursorPos X="1" Y="157"/>
+        <EditorIndex Value="2"/>
+        <Filename Value="DiceSet.pas"/>
+        <ComponentName Value="DiceSetForm"/>
+        <HasResources Value="True"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <ResourceFilename Value="DiceSet.lrs"/>
+        <TopLine Value="139"/>
+        <UnitName Value="DiceSet"/>
+        <UsageCount Value="139"/>
+      </Unit20>
+      <Unit21>
+        <CursorPos X="1" Y="180"/>
+        <Filename Value="PseudoRandomGenerator.pas"/>
+        <TopLine Value="166"/>
+        <UnitName Value="PseudoRandomGenerator"/>
+        <UsageCount Value="10"/>
+      </Unit21>
+      <Unit22>
+        <CursorPos X="61" Y="1162"/>
+        <Filename Value="/Users/wstomv/freepascal/lazarus/lcl/Controls.pp"/>
+        <TopLine Value="1133"/>
+        <UnitName Value="Controls"/>
+        <UsageCount Value="10"/>
+      </Unit22>
+      <Unit23>
+        <CursorPos X="33" Y="31"/>
+        <EditorIndex Value="3"/>
+        <Filename Value="GameRecordings.pas"/>
+        <ComponentName Value="GameRecForm"/>
+        <HasResources Value="True"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <ResourceFilename Value="GameRecordings.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="GameRecordings"/>
+        <UsageCount Value="139"/>
+      </Unit23>
+      <Unit24>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="GameRecordings.lfm"/>
+        <SyntaxHighlighter Value="LFM"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="6"/>
+      </Unit24>
+      <Unit25>
+        <CursorPos X="16" Y="91"/>
+        <EditorIndex Value="4"/>
+        <Filename Value="Advisor.pas"/>
+        <ComponentName Value="AdvisorForm"/>
+        <HasResources Value="True"/>
+        <IsPartOfProject Value="True"/>
+        <Loaded Value="True"/>
+        <ResourceFilename Value="Advisor.lrs"/>
+        <TopLine Value="59"/>
+        <UnitName Value="Advisor"/>
+        <UsageCount Value="139"/>
+      </Unit25>
+      <Unit26>
+        <CursorPos X="15" Y="13"/>
+        <Filename Value="TableSettings.pas"/>
+        <ComponentName Value="CreateTableForm"/>
+        <HasResources Value="True"/>
+        <ResourceFilename Value="TableSettings.lrs"/>
+        <TopLine Value="1"/>
+        <UnitName Value="TableSettings"/>
+        <UsageCount Value="10"/>
+      </Unit26>
+      <Unit27>
+        <CursorPos X="24" Y="33"/>
+        <Filename Value="/Users/wstomv/freepascal/fpc/rtl/objpas/sysutils/finah.inc"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="10"/>
+      </Unit27>
+      <Unit28>
+        <CursorPos X="3" Y="20"/>
+        <Filename Value="GeneralStuff.pas"/>
+        <TopLine Value="1"/>
+        <UnitName Value="GeneralStuff"/>
+        <UsageCount Value="10"/>
+      </Unit28>
+      <Unit29>
+        <CursorPos X="18" Y="105"/>
+        <Filename Value="DiceStuff.pas"/>
+        <TopLine Value="82"/>
+        <UnitName Value="DiceStuff"/>
+        <UsageCount Value="6"/>
+      </Unit29>
+      <Unit30>
+        <CursorPos X="3" Y="99"/>
+        <Filename Value="YahtzeeConcepts.pas"/>
+        <TopLine Value="76"/>
+        <UnitName Value="YahtzeeConcepts"/>
+        <UsageCount Value="10"/>
+      </Unit30>
+      <Unit31>
+        <CursorPos X="15" Y="941"/>
+        <Filename Value="/Users/wstomv/freepascal/lazarus/lcl/Forms.pp"/>
+        <TopLine Value="900"/>
+        <UnitName Value="Forms"/>
+        <UsageCount Value="10"/>
+      </Unit31>
+      <Unit32>
+        <CursorPos X="1" Y="1412"/>
+        <Filename Value="/Users/wstomv/freepascal/lazarus/lcl/include/application.inc"/>
+        <TopLine Value="1399"/>
+        <UsageCount Value="10"/>
+      </Unit32>
+      <Unit33>
+        <CursorPos X="21" Y="68"/>
+        <Filename Value="/Users/wstomv/freepascal/lazarus/lcl/InterfaceBase.pp"/>
+        <TopLine Value="26"/>
+        <UnitName Value="InterfaceBase"/>
+        <UsageCount Value="10"/>
+      </Unit33>
+      <Unit34>
+        <CursorPos X="32" Y="617"/>
+        <Filename Value="/Users/wstomv/freepascal/lazarus/lcl/include/customform.inc"/>
+        <TopLine Value="594"/>
+        <UsageCount Value="2"/>
+      </Unit34>
+      <Unit35>
+        <CursorPos X="1" Y="3"/>
+        <Filename Value="ScoreCards.lrs"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="4"/>
+      </Unit35>
+      <Unit36>
+        <CursorPos X="1" Y="53"/>
+        <Filename Value="Advisor.lfm"/>
+        <SyntaxHighlighter Value="LFM"/>
+        <TopLine Value="8"/>
+        <UsageCount Value="6"/>
+      </Unit36>
+      <Unit37>
+        <CursorPos X="34" Y="60"/>
+        <Filename Value="/Users/wstomv/Projects/Yahtzee/Delphi/YahtzeeTrainer1.2.1/advisor.dfm"/>
+        <SyntaxHighlighter Value="LFM"/>
+        <TopLine Value="27"/>
+        <UsageCount Value="3"/>
+      </Unit37>
+      <Unit38>
+        <CursorPos X="45" Y="25"/>
+        <Filename Value="/Users/wstomv/Projects/Yahtzee/Delphi/YahtzeeTrainer1.2.1/advisor-init.txt"/>
+        <SyntaxHighlighter Value="None"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="6"/>
+      </Unit38>
+      <Unit39>
+        <CursorPos X="1" Y="1"/>
+        <Filename Value="/Users/wstomv/Projects/Yahtzee/Delphi/YahtzeeTrainer1.2.1/gamerecordings-init.txt"/>
+        <SyntaxHighlighter Value="None"/>
+        <TopLine Value="1"/>
+        <UsageCount Value="6"/>
+      </Unit39>
+      <Unit40>
+        <CursorPos X="21" Y="162"/>
+        <Filename Value="/Users/wstomv/freepascal/lazarus/components/synedit/SynMemo.pas"/>
+        <TopLine Value="1"/>
+        <UnitName Value="SynMemo"/>
+        <UsageCount Value="6"/>
+      </Unit40>
+      <Unit41>
+        <CursorPos X="19" Y="1241"/>
+        <Filename Value="/Users/wstomv/freepascal/lazarus/lcl/StdCtrls.pp"/>
+        <TopLine Value="1201"/>
+        <UnitName Value="StdCtrls"/>
+        <UsageCount Value="6"/>
+      </Unit41>
+      <Unit42>
+        <CursorPos X="30" Y="68"/>
+        <Filename Value="/Users/wstomv/freepascal/lazarus/lcl/include/custommemo.inc"/>
+        <TopLine Value="45"/>
+        <UsageCount Value="6"/>
+      </Unit42>
+      <Unit43>
+        <CursorPos X="29" Y="223"/>
+        <Filename Value="YahtzeeEventLists.pas"/>
+        <TopLine Value="211"/>
+        <UnitName Value="YahtzeeEventLists"/>
+        <UsageCount Value="9"/>
+      </Unit43>
+      <Unit44>
+        <CursorPos X="11" Y="29"/>
+        <Filename Value="YahtzeeExtras.pas"/>
+        <TopLine Value="6"/>
+        <UnitName Value="YahtzeeExtras"/>
+        <UsageCount Value="8"/>
+      </Unit44>
+    </Units>
+    <PublishOptions>
+      <Version Value="2"/>
+      <IgnoreBinaries Value="False"/>
+      <IncludeFileFilter Value="*.(pas|pp|inc|lfm|lpr|lrs|lpi|lpk|sh|xml)"/>
+      <ExcludeFileFilter Value="*.(bak|ppu|ppw|o|so);*~;backup"/>
+    </PublishOptions>
+    <RunParams>
+      <local>
+        <FormatVersion Value="1"/>
+        <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
+      </local>
+    </RunParams>
+    <RequiredPackages Count="2">
+      <Item1>
+        <PackageName Value="SynEdit"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="LCL"/>
+      </Item2>
+    </RequiredPackages>
+  </ProjectOptions>
+  <CompilerOptions>
+    <Version Value="5"/>
+    <SearchPaths>
+      <UnitOutputDirectory Value="units/"/>
+      <SrcPath Value="$(LazarusDir)/lcl/;$(LazarusDir)/lcl/interfaces/$(LCLWidgetType)/"/>
+    </SearchPaths>
+    <Parsing>
+      <SyntaxOptions>
+        <D2Extensions Value="False"/>
+        <CStyleOperator Value="False"/>
+        <AllowLabel Value="False"/>
+        <CPPInline Value="False"/>
+      </SyntaxOptions>
+    </Parsing>
+    <CodeGeneration>
+      <Checks>
+        <IOChecks Value="True"/>
+        <RangeChecks Value="True"/>
+        <OverflowChecks Value="True"/>
+        <StackChecks Value="True"/>
+      </Checks>
+      <Optimizations>
+        <OptimizationLevel Value="2"/>
+      </Optimizations>
+    </CodeGeneration>
+    <Other>
+      <Verbosity>
+        <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
+      </Verbosity>
+      <CompilerPath Value="$(CompPath)"/>
+    </Other>
+  </CompilerOptions>
+</CONFIG>

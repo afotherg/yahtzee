@@ -1,0 +1,281 @@
+import { loadGstbl, initialGameState, Categories, CategoryNames, countsOfRoll, adviceForRoll, playAiTurn, formatKeepers, applyScoreEvent, finalCategoryEVs } from './logic.js';
+
+const el = (id)=>document.getElementById(id);
+const logEl = el('log');
+function log(msg){ logEl.textContent += msg + '\n'; logEl.scrollTop = logEl.scrollHeight; }
+
+let gstbl = null;
+let rng = Math.random;
+
+// Game state
+let humanGS = null;
+let aiGS = null;
+let humanScoreCard = {}; // cat->score or null
+let aiScoreCard = {};
+let humanRoll = [1,1,1,1,1];
+let keptMask = [false,false,false,false,false];
+let rollsLeft = 3;
+let humansTurn = true;
+let suggestedBestCategory = null;
+
+function resetScoreCard(sc){
+  for (let c=0;c<=Categories.Chance;c++) sc[c]=null;
+}
+
+function sumUpper(sc){ let s=0; for (let c=0;c<=Categories.Sixes;c++) s += sc[c]||0; return s; }
+function grandTotal(sc){
+  // Category scores already include any US bonus or extra Yahtzee bonuses
+  let s=0; for (let c=0;c<=Categories.Chance;c++) s += sc[c]||0;
+  return s;
+}
+
+function renderScoreboard(target, sc){
+  const container = el(target);
+  container.innerHTML = '';
+  for (let c=0;c<=Categories.Chance;c++) {
+    const row = document.createElement('div'); row.className='row';
+    const lab = document.createElement('div'); lab.className='label'; lab.textContent = CategoryNames[c];
+    const val = document.createElement('div'); val.className='value'; val.textContent = sc[c]==null ? '—' : sc[c];
+    row.appendChild(lab); row.appendChild(val);
+    container.appendChild(row);
+  }
+  const totalRow = document.createElement('div'); totalRow.className='row';
+  const lab = document.createElement('div'); lab.className='label'; lab.textContent = 'Total';
+  const val = document.createElement('div'); val.className='value'; val.textContent = grandTotal(sc);
+  totalRow.appendChild(lab); totalRow.appendChild(val);
+  container.appendChild(totalRow);
+}
+
+function renderDice(){
+  const dice = el('dice'); dice.innerHTML='';
+  for (let i=0;i<5;i++){
+    const d = document.createElement('div'); d.className='die' + (keptMask[i]?' kept':'');
+    // Show question marks before the first roll of a turn
+    const showUnknown = humansTurn && rollsLeft===3;
+    d.textContent = showUnknown ? '?' : humanRoll[i];
+    const k = document.createElement('div'); k.className='keep'; k.textContent = keptMask[i]?'kept':''; d.appendChild(k);
+    d.addEventListener('click',()=>{
+      if (!humansTurn || rollsLeft===3) return; // cannot keep before first roll
+      if (rollsLeft===0) return;
+      keptMask[i] = !keptMask[i];
+      renderDice();
+      updateAdvice();
+    });
+    dice.appendChild(d);
+  }
+}
+
+function renderCategories(){
+  const cont = el('categories'); cont.innerHTML='';
+  for (let c=0;c<=Categories.Chance;c++){
+    const b = document.createElement('div'); b.className='cat'; b.textContent = CategoryNames[c];
+    const disabled = !humanGS.free.has(c);
+    if (disabled) b.classList.add('disabled');
+    if (!disabled && rollsLeft===0 && suggestedBestCategory===c) b.classList.add('best');
+    b.addEventListener('click', ()=>{
+      // Allow scoring on any roll after the first (standard Yahtzee rule)
+      if (!humansTurn || disabled || rollsLeft===3) return;
+      scoreHuman(c);
+    });
+    cont.appendChild(b);
+  }
+}
+
+function setButtons(){
+  el('rollBtn').disabled = !humansTurn || (rollsLeft===0 && !canRoll());
+  // Enable scoring after at least one roll (rollsLeft < 3)
+  el('scoreBtn').disabled = !humansTurn || (rollsLeft===3);
+}
+
+function canRoll(){ return rollsLeft>0; }
+
+function updateAdvice(){
+  const adviceEl = el('advice');
+  suggestedBestCategory = null;
+  if (!gstbl) { adviceEl.textContent='—'; return; }
+  if (!humansTurn) { adviceEl.textContent='Computer is thinking…'; return; }
+  if (rollsLeft===3) { adviceEl.textContent='Press Roll to start turn.'; return; }
+  const adv = adviceForRoll(humanGS, humanRoll, rollsLeft, gstbl);
+  if (adv.type==='keep') adviceEl.textContent = 'Keep ' + formatKeepers(adv.keep);
+  else { adviceEl.textContent = 'Score ' + CategoryNames[adv.category]; suggestedBestCategory = adv.category; }
+  renderEVPanel();
+}
+
+function newGame(){
+  humanGS = initialGameState(); aiGS = initialGameState();
+  resetScoreCard(humanScoreCard); resetScoreCard(aiScoreCard);
+  humansTurn = true; rollsLeft = 3; keptMask = [false,false,false,false,false];
+  for (let i=0;i<5;i++) humanRoll[i]=1;
+  renderAll();
+  log('New game. Human starts.');
+}
+
+function renderAll(){
+  renderScoreboard('humanScore', humanScoreCard);
+  renderScoreboard('aiScore', aiScoreCard);
+  renderDice();
+  renderCategories();
+  el('rollsLeft').textContent = rollsLeft;
+  el('turnStatus').textContent = humansTurn ? 'Your turn' : 'Computer turn';
+  setButtons();
+  updateAdvice();
+}
+
+function renderEVPanel(){
+  const panel = el('evPanel');
+  const list = el('evList');
+  if (!gstbl || !humansTurn || rollsLeft>0){ panel.style.display='none'; list.innerHTML=''; return; }
+  const evs = finalCategoryEVs(humanGS, humanRoll, gstbl);
+  list.innerHTML = '';
+  for (const {category, ev} of evs){
+    const div = document.createElement('div');
+    div.textContent = `${CategoryNames[category]}: ${ev.toFixed(2)}`;
+    if (category===suggestedBestCategory) div.style.color = '#2ecc71';
+    list.appendChild(div);
+  }
+  panel.style.display = 'block';
+}
+
+function doRoll(){
+  if (!canRoll()) return;
+  // Build keepers based on keptMask; re-roll others
+  for (let i=0;i<5;i++){
+    if (!keptMask[i]) humanRoll[i] = 1 + Math.floor(rng()*6);
+  }
+  rollsLeft--;
+  if (rollsLeft===2) {
+    // First roll happened; now can toggle keeps
+    keptMask = humanRoll.map(()=>false);
+  }
+  renderAll();
+}
+
+function scoreHuman(cat){
+  // apply scoring to humanGS; compute score with current roll
+  const bag = countsOfRoll(humanRoll);
+  const chosen = cat;
+  const { score, gsNew } = applyScoreEvent(humanGS, bag, chosen);
+  humanScoreCard[chosen] = score;
+  humanGS = gsNew;
+  log(`Human scores ${score} in ${CategoryNames[chosen]}`);
+  // next turn to AI
+  nextTurn();
+}
+
+function nextTurn(){
+  // Reset human turn state
+  keptMask = [false,false,false,false,false];
+  rollsLeft = 3;
+  for (let i=0;i<5;i++) humanRoll[i]=1;
+  humansTurn = false; renderAll();
+  setTimeout(()=>aiTurnAnimated(), 250);
+}
+
+function bagToKeepMask(roll, keepCounts){
+  // Convert face-count keep suggestion into a mask over the current rolled dice
+  const remaining = keepCounts.slice(); // length 6
+  const mask = [false,false,false,false,false];
+  for (let i=0;i<5;i++){
+    const face = roll[i];
+    const idx = face-1;
+    if (remaining[idx] > 0){ mask[i] = true; remaining[idx]--; }
+  }
+  return mask;
+}
+
+function aiTurnAnimated(){
+  // Use the main dice UI to show AI’s turn
+  let roll = [0,0,0,0,0];
+  for (let i=0;i<5;i++) roll[i] = 1 + Math.floor(rng()*6);
+  humanRoll = roll.slice(); // display
+  keptMask = [false,false,false,false,false];
+  rollsLeft = 2; renderAll();
+
+  const step1 = () => {
+    const adv1 = adviceForRoll(aiGS, roll, 2, gstbl);
+    keptMask = bagToKeepMask(roll, adv1.keep);
+    renderAll();
+    setTimeout(()=>{
+      // Reroll non-kept
+      const keptFaces = [];
+      for (let i=0;i<5;i++) if (keptMask[i]) keptFaces.push(roll[i]);
+      roll = keptFaces.slice();
+      while (roll.length<5) roll.push(1+Math.floor(rng()*6));
+      humanRoll = roll.slice(); keptMask = [false,false,false,false,false]; rollsLeft = 1; renderAll();
+      setTimeout(step2, 500);
+    }, 600);
+  };
+
+  const step2 = () => {
+    const adv2 = adviceForRoll(aiGS, roll, 1, gstbl);
+    keptMask = bagToKeepMask(roll, adv2.keep);
+    renderAll();
+    setTimeout(()=>{
+      const keptFaces = [];
+      for (let i=0;i<5;i++) if (keptMask[i]) keptFaces.push(roll[i]);
+      roll = keptFaces.slice();
+      while (roll.length<5) roll.push(1+Math.floor(rng()*6));
+      humanRoll = roll.slice(); keptMask = [false,false,false,false,false]; rollsLeft = 0; renderAll();
+      setTimeout(scoreStep, 600);
+    }, 600);
+  };
+
+  const scoreStep = () => {
+    const adv3 = adviceForRoll(aiGS, roll, 0, gstbl);
+    const bag = countsOfRoll(roll);
+    const { score, gsNew } = applyScoreEvent(aiGS, bag, adv3.category);
+    aiScoreCard[adv3.category] = score;
+    aiGS = gsNew;
+    log(`AI rolled ${roll.join(' ')} and scored ${score} in ${CategoryNames[adv3.category]}`);
+    // back to human
+    humansTurn = true; rollsLeft = 3; keptMask = [false,false,false,false,false];
+    for (let i=0;i<5;i++) humanRoll[i]=1;
+    renderAll();
+    checkGameEnd();
+  };
+
+  setTimeout(step1, 500);
+}
+
+function isGameOver(){ return humanGS.free.size===0 && aiGS.free.size===0; }
+
+function checkGameEnd(){
+  if (!isGameOver()) return;
+  const h = grandTotal(humanScoreCard);
+  const a = grandTotal(aiScoreCard);
+  log(`Game over. Human ${h} vs AI ${a}. ${h>a?'Human wins!':h<a?'AI wins!':'Draw.'}`);
+}
+
+// (no local scoring mirror; app uses applyScoreEvent from logic.js)
+
+// Wire up UI
+el('newGameBtn').addEventListener('click', newGame);
+el('rollBtn').addEventListener('click', doRoll);
+el('scoreBtn').addEventListener('click', ()=>{
+  // quick-score best category when human clicks button
+  if (rollsLeft>0) return;
+  const adv = adviceForRoll(humanGS, humanRoll, 0, gstbl);
+  scoreHuman(adv.category);
+});
+
+(async function init(){
+  const status = el('loadStatus');
+  status.textContent = 'Loading optimal table…';
+  const paths = [
+    // When deployed to site root (GitHub Pages action copies gstbl/ alongside index.html)
+    'gstbl/OptEScore-Official.gstbl',
+    // When running from repo (opening /web/ directly or via localhost)
+    '../gstbl/OptEScore-Official.gstbl',
+  ];
+  let lastErr = null;
+  for (const p of paths) {
+    try {
+      gstbl = await loadGstbl(p);
+      status.textContent = 'Ready';
+      newGame();
+      return;
+    } catch (e) { lastErr = e; }
+  }
+  status.textContent = 'Failed to load tables';
+  console.error(lastErr);
+})();

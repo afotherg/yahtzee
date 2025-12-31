@@ -1,0 +1,200 @@
+object DiceSetForm: TDiceSetForm
+  ActiveControl = EditDice1
+  BorderIcons = []
+  BorderStyle = bsToolWindow
+  Caption = 'Dice Set'
+  ClientHeight = 80
+  ClientWidth = 305
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  OnCreate = FormCreate
+  PixelsPerInch = 75
+  TextHeight = 13
+  Visible = True
+  HorzScrollBar.Page = 304
+  VertScrollBar.Page = 79
+  Height = 80
+  Top = 105
+  Width = 305
+  object lblInfo: TLabel
+    Caption = 'Roll'
+    Color = clNone
+    Left = 240
+    Height = 12
+    Top = 8
+    Width = 21
+  end
+  object HeldLabelDice1: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'HELD'
+    Color = clNone
+    Font.Color = clRed
+    Left = 16
+    Height = 12
+    Top = 8
+    Width = 33
+  end
+  object HeldLabelDice2: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'HELD'
+    Color = clNone
+    Font.Color = clRed
+    Visible = False
+    Left = 56
+    Height = 12
+    Top = 8
+    Width = 33
+  end
+  object HeldLabelDice3: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'HELD'
+    Color = clNone
+    Font.Color = clRed
+    Visible = False
+    Left = 95
+    Height = 12
+    Top = 8
+    Width = 33
+  end
+  object HeldLabelDice4: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'HELD'
+    Color = clNone
+    Font.Color = clRed
+    Visible = False
+    Left = 136
+    Height = 12
+    Top = 8
+    Width = 33
+  end
+  object HeldLabelDice5: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'HELD'
+    Color = clNone
+    Font.Color = clRed
+    Visible = False
+    Left = 176
+    Height = 12
+    Top = 8
+    Width = 33
+  end
+  object EditDice1: TEdit
+    ParentFont = True
+    ReadOnly = True
+    TabOrder = 0
+    Left = 16
+    Height = 32
+    Hint = 'Value on dice'
+    Top = 24
+    Width = 33
+  end
+  object EditDice2: TEdit
+    ParentFont = True
+    ReadOnly = True
+    TabOrder = 1
+    Left = 56
+    Height = 32
+    Hint = 'Value on dice'
+    Top = 24
+    Width = 32
+  end
+  object EditDice3: TEdit
+    ParentFont = True
+    ReadOnly = True
+    TabOrder = 2
+    Left = 95
+    Height = 33
+    Hint = 'Value on dice'
+    Top = 24
+    Width = 33
+  end
+  object EditDice4: TEdit
+    ParentFont = True
+    ReadOnly = True
+    TabOrder = 3
+    Left = 136
+    Height = 33
+    Hint = 'Value on dice'
+    Top = 24
+    Width = 32
+  end
+  object EditDice5: TEdit
+    ParentFont = True
+    ReadOnly = True
+    TabOrder = 4
+    Left = 176
+    Height = 33
+    Hint = 'Value on dice'
+    Top = 24
+    Width = 32
+  end
+  object ButRoll: TButton
+    Caption = 'Roll !'
+    OnClick = ButRollClick
+    TabOrder = 5
+    Left = 222
+    Height = 25
+    Hint = 'Roll all unkept dice'
+    Top = 32
+    Width = 75
+  end
+  object CheckDice1: TCheckBox
+    Hint = 'Checked dice will be kept and not rolled'
+    OnChange = CheckDice1Change
+    TabOrder = 6
+    Left = 24
+    Height = 24
+    Hint = 'Checked dice will be kept and not rolled'
+    Top = 56
+    Width = 24
+  end
+  object CheckDice2: TCheckBox
+    Hint = 'Checked dice will be kept and not rolled'
+    OnChange = CheckDice2Change
+    TabOrder = 7
+    Left = 64
+    Height = 24
+    Hint = 'Checked dice will be kept and not rolled'
+    Top = 56
+    Width = 24
+  end
+  object CheckDice3: TCheckBox
+    Hint = 'Checked dice will be kept and not rolled'
+    OnChange = CheckDice3Change
+    TabOrder = 8
+    Left = 104
+    Height = 24
+    Hint = 'Checked dice will be kept and not rolled'
+    Top = 56
+    Width = 24
+  end
+  object CheckDice4: TCheckBox
+    Hint = 'Checked dice will be kept and not rolled'
+    OnChange = CheckDice4Change
+    TabOrder = 9
+    Left = 144
+    Height = 24
+    Hint = 'Checked dice will be kept and not rolled'
+    Top = 56
+    Width = 24
+  end
+  object CheckDice5: TCheckBox
+    Hint = 'Checked dice will be kept and not rolled'
+    OnChange = CheckDice5Change
+    TabOrder = 10
+    Left = 184
+    Height = 24
+    Hint = 'Checked dice will be kept and not rolled'
+    Top = 56
+    Width = 24
+  end
+  object EditRollIndex: TEdit
+    ReadOnly = True
+    TabOrder = 11
+    Left = 272
+    Height = 21
+    Hint = 'Number of times rolled on this turn (max. 3)'
+    Top = 4
+    Width = 25
+  end
+end

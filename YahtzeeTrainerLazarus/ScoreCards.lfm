@@ -1,0 +1,530 @@
+object ScoreCardForm: TScoreCardForm
+  BorderIcons = []
+  BorderStyle = bsToolWindow
+  Caption = 'Score Card'
+  ClientHeight = 505
+  ClientWidth = 305
+  OnCreate = FormCreate
+  PixelsPerInch = 75
+  TextHeight = 13
+  Visible = True
+  HorzScrollBar.Page = 304
+  VertScrollBar.Page = 504
+  Height = 505
+  Top = 208
+  Width = 305
+  object LabelUSTotal: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'Upper Section Total'
+    Color = clNone
+    Font.Height = -13
+    Font.Style = [fsBold]
+    Left = 8
+    Height = 20
+    Top = 204
+    Width = 168
+  end
+  object LabelEYBonus: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'Extra Yahtzee Bonus'
+    Color = clNone
+    Font.Height = -13
+    Font.Style = [fsBold]
+    Left = 8
+    Height = 20
+    Hint = 'Condition: 50 for Yahtzee and 5 equals'
+    Top = 452
+    Width = 168
+  end
+  object LabelGrandTotal: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'GRAND TOTAL'
+    Color = clNone
+    Font.Height = -13
+    Font.Style = [fsBold]
+    Left = 8
+    Height = 20
+    Top = 480
+    Width = 168
+  end
+  object LabelUSBonus: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'Upper Section Bonus'
+    Color = clNone
+    Font.Height = -13
+    Font.Style = [fsBold]
+    Left = 8
+    Height = 20
+    Hint = 'Condition: 63 or more in Upper Section'
+    Top = 232
+    Width = 168
+  end
+  object LabelTurnIndex: TLabel
+    BorderSpacing.OnChange = nil
+    Caption = 'Turn'
+    Color = clNone
+    Left = 240
+    Height = 17
+    Top = 12
+    Width = 25
+  end
+  object PanelUpperSection: TPanel
+    BorderSpacing.OnChange = nil
+    ClientHeight = 161
+    ClientWidth = 305
+    FullRepaint = False
+    TabOrder = 0
+    Height = 161
+    Top = 32
+    Width = 305
+    object LabelAces: TLabel
+      BorderSpacing.OnChange = nil
+      Caption = 'Aces'
+      Color = clNone
+      Left = 8
+      Height = 20
+      Hint = 'Condition: None'
+      Top = 12
+      Width = 36
+    end
+    object LabelTwos: TLabel
+      BorderSpacing.OnChange = nil
+      Caption = 'Twos'
+      Color = clNone
+      Left = 8
+      Height = 20
+      Hint = 'Condition: None'
+      Top = 36
+      Width = 37
+    end
+    object LabelThrees: TLabel
+      BorderSpacing.OnChange = nil
+      Caption = 'Threes'
+      Color = clNone
+      Left = 8
+      Height = 20
+      Hint = 'Condition: None'
+      Top = 60
+      Width = 49
+    end
+    object LabelFours: TLabel
+      BorderSpacing.OnChange = nil
+      Caption = 'Fours'
+      Color = clNone
+      Left = 8
+      Height = 20
+      Hint = 'Condition: None'
+      Top = 84
+      Width = 41
+    end
+    object LabelFives: TLabel
+      BorderSpacing.OnChange = nil
+      Caption = 'Fives'
+      Color = clNone
+      Left = 8
+      Height = 20
+      Hint = 'Condition: None'
+      Top = 108
+      Width = 37
+    end
+    object LabelSixes: TLabel
+      BorderSpacing.OnChange = nil
+      Caption = 'Sixes'
+      Color = clNone
+      Left = 8
+      Height = 20
+      Hint = 'Condition: None'
+      Top = 132
+      Width = 38
+    end
+    object EditAces: TEdit
+      BorderSpacing.OnChange = nil
+      ReadOnly = True
+      TabOrder = 6
+      Left = 224
+      Height = 24
+      Hint = 'Total value of all dice showing 1'
+      Top = 8
+      Width = 41
+    end
+    object EditTwos: TEdit
+      BorderSpacing.OnChange = nil
+      ReadOnly = True
+      TabOrder = 7
+      Left = 224
+      Height = 24
+      Hint = 'Total value of all dice showing 2'
+      Top = 32
+      Width = 41
+    end
+    object EditThrees: TEdit
+      BorderSpacing.OnChange = nil
+      ReadOnly = True
+      TabOrder = 8
+      Left = 224
+      Height = 24
+      Hint = 'Total value of all dice showing 3'
+      Top = 56
+      Width = 41
+    end
+    object EditFours: TEdit
+      BorderSpacing.OnChange = nil
+      ReadOnly = True
+      TabOrder = 9
+      Left = 224
+      Height = 24
+      Hint = 'Total value of all dice showing 4'
+      Top = 80
+      Width = 41
+    end
+    object EditFives: TEdit
+      BorderSpacing.OnChange = nil
+      ReadOnly = True
+      TabOrder = 10
+      Left = 224
+      Height = 24
+      Hint = 'Total value of all dice showing 5'
+      Top = 104
+      Width = 41
+    end
+    object EditSixes: TEdit
+      BorderSpacing.OnChange = nil
+      ReadOnly = True
+      TabOrder = 11
+      Left = 224
+      Height = 24
+      Hint = 'Total value of all dice showing 6'
+      Top = 128
+      Width = 41
+    end
+    object ButAces: TButton
+      BorderSpacing.OnChange = nil
+      Caption = '<<'
+      OnClick = ScoreButtonClick
+      TabOrder = 0
+      Left = 264
+      Height = 22
+      Top = 9
+      Width = 33
+    end
+    object ButTwos: TButton
+      BorderSpacing.OnChange = nil
+      Caption = '<<'
+      OnClick = ScoreButtonClick
+      TabOrder = 1
+      Left = 264
+      Height = 22
+      Top = 33
+      Width = 33
+    end
+    object ButThrees: TButton
+      BorderSpacing.OnChange = nil
+      Caption = '<<'
+      OnClick = ScoreButtonClick
+      TabOrder = 2
+      Left = 264
+      Height = 22
+      Top = 57
+      Width = 33
+    end
+    object ButFours: TButton
+      BorderSpacing.OnChange = nil
+      Caption = '<<'
+      OnClick = ScoreButtonClick
+      TabOrder = 3
+      Left = 264
+      Height = 22
+      Top = 81
+      Width = 33
+    end
+    object ButFives: TButton
+      BorderSpacing.OnChange = nil
+      Caption = '<<'
+      OnClick = ScoreButtonClick
+      TabOrder = 4
+      Left = 264
+      Height = 22
+      Top = 105
+      Width = 33
+    end
+    object ButSixes: TButton
+      BorderSpacing.OnChange = nil
+      Caption = '<<'
+      OnClick = ScoreButtonClick
+      TabOrder = 5
+      Left = 264
+      Height = 22
+      Top = 129
+      Width = 33
+    end
+  end
+  object PanelLowerSection: TPanel
+    BorderSpacing.OnChange = nil
+    ClientHeight = 185
+    ClientWidth = 305
+    FullRepaint = False
+    TabOrder = 3
+    Height = 185
+    Top = 256
+    Width = 305
+    object LabelThreeOfAKind: TLabel
+      BorderSpacing.OnChange = nil
+      Caption = 'Three of a Kind'
+      Color = clNone
+      Left = 8
+      Height = 20
+      Hint = 'Condition: 3 (or more) equal dice values'
+      Top = 12
+      Width = 107
+    end
+    object LabelChance: TLabel
+      BorderSpacing.OnChange = nil
+      Caption = 'Chance'
+      Color = clNone
+      Left = 8
+      Height = 20
+      Hint = 'Condition: None'
+      Top = 156
+      Width = 55
+    end
+    object LabelYahtzee: TLabel
+      BorderSpacing.OnChange = nil
+      Caption = 'Yahtzee'
+      Color = clNone
+      Left = 8
+      Height = 20
+      Hint = 'Condition: 5 equal dice values'
+      Top = 132
+      Width = 60
+    end
+    object LabelLargeStraight: TLabel
+      BorderSpacing.OnChange = nil
+      Caption = 'Large Straight'
+      Color = clNone
+      Left = 8
+      Height = 20
+      Hint = 'Condition: 5 dice values in sequence, or a Joker Yahtzee'
+      Top = 108
+      Width = 101
+    end
+    object LabelSmallStraight: TLabel
+      BorderSpacing.OnChange = nil
+      Caption = 'Small Straight'
+      Color = clNone
+      Left = 8
+      Height = 20
+      Hint = 'Condition: 4 (or more) dice values in sequence, or a Joker Yahtzee'
+      Top = 84
+      Width = 99
+    end
+    object LabelFullHouse: TLabel
+      BorderSpacing.OnChange = nil
+      Caption = 'Full House'
+      Color = clNone
+      Left = 8
+      Height = 20
+      Hint = 'Condition: 3 equal dice values and 2 other equals, or a Joker Yahtzee'
+      Top = 60
+      Width = 76
+    end
+    object LabelFourOfAKind: TLabel
+      BorderSpacing.OnChange = nil
+      Caption = 'Four of a Kind'
+      Color = clNone
+      Left = 8
+      Height = 20
+      Hint = 'Condition: 4 (or more) equal dice values'
+      Top = 36
+      Width = 99
+    end
+    object EditThreeOfAKind: TEdit
+      BorderSpacing.OnChange = nil
+      ReadOnly = True
+      TabOrder = 7
+      Left = 224
+      Height = 24
+      Hint = 'Total of all dice values'
+      Top = 8
+      Width = 41
+    end
+    object ButThreeOfAKind: TButton
+      BorderSpacing.OnChange = nil
+      Caption = '<<'
+      OnClick = ScoreButtonClick
+      TabOrder = 0
+      Left = 264
+      Height = 22
+      Top = 9
+      Width = 33
+    end
+    object ButFourOfAkind: TButton
+      BorderSpacing.OnChange = nil
+      Caption = '<<'
+      OnClick = ScoreButtonClick
+      TabOrder = 1
+      Left = 264
+      Height = 22
+      Top = 33
+      Width = 33
+    end
+    object EditFourOfAKind: TEdit
+      BorderSpacing.OnChange = nil
+      ReadOnly = True
+      TabOrder = 8
+      Left = 224
+      Height = 24
+      Hint = 'Total of all dice values'
+      Top = 32
+      Width = 41
+    end
+    object EditFullHouse: TEdit
+      BorderSpacing.OnChange = nil
+      ReadOnly = True
+      TabOrder = 9
+      Left = 224
+      Height = 24
+      Hint = '25 points'
+      Top = 56
+      Width = 41
+    end
+    object ButFullHouse: TButton
+      BorderSpacing.OnChange = nil
+      Caption = '<<'
+      OnClick = ScoreButtonClick
+      TabOrder = 2
+      Left = 264
+      Height = 22
+      Top = 57
+      Width = 33
+    end
+    object ButSmallStraight: TButton
+      BorderSpacing.OnChange = nil
+      Caption = '<<'
+      OnClick = ScoreButtonClick
+      TabOrder = 3
+      Left = 264
+      Height = 22
+      Top = 81
+      Width = 33
+    end
+    object EditSmallStraight: TEdit
+      BorderSpacing.OnChange = nil
+      ReadOnly = True
+      TabOrder = 10
+      Left = 224
+      Height = 24
+      Hint = '30 points'
+      Top = 80
+      Width = 41
+    end
+    object EditLargeStraight: TEdit
+      BorderSpacing.OnChange = nil
+      ReadOnly = True
+      TabOrder = 11
+      Left = 224
+      Height = 24
+      Hint = '40 points'
+      Top = 104
+      Width = 41
+    end
+    object ButLargeStraight: TButton
+      BorderSpacing.OnChange = nil
+      Caption = '<<'
+      OnClick = ScoreButtonClick
+      TabOrder = 4
+      Left = 264
+      Height = 22
+      Top = 105
+      Width = 33
+    end
+    object EditYahtzee: TEdit
+      BorderSpacing.OnChange = nil
+      ReadOnly = True
+      TabOrder = 12
+      Left = 224
+      Height = 24
+      Hint = '50 points'
+      Top = 128
+      Width = 41
+    end
+    object EditChance: TEdit
+      BorderSpacing.OnChange = nil
+      ReadOnly = True
+      TabOrder = 13
+      Left = 224
+      Height = 24
+      Hint = 'Total of all dice values'
+      Top = 152
+      Width = 41
+    end
+    object ButYahtzee: TButton
+      BorderSpacing.OnChange = nil
+      Caption = '<<'
+      OnClick = ScoreButtonClick
+      TabOrder = 5
+      Left = 264
+      Height = 22
+      Top = 129
+      Width = 33
+    end
+    object ButChance: TButton
+      BorderSpacing.OnChange = nil
+      Caption = '<<'
+      OnClick = ScoreButtonClick
+      TabOrder = 6
+      Left = 264
+      Height = 22
+      Top = 153
+      Width = 33
+    end
+  end
+  object EditUSTotal: TEdit
+    BorderSpacing.OnChange = nil
+    ReadOnly = True
+    TabOrder = 2
+    Left = 176
+    Height = 24
+    Top = 200
+    Width = 41
+  end
+  object EditUSBonus: TEdit
+    BorderSpacing.OnChange = nil
+    ReadOnly = True
+    TabOrder = 1
+    Left = 224
+    Height = 24
+    Hint = '35 points'
+    Top = 228
+    Width = 41
+  end
+  object EditGrandTotal: TEdit
+    BorderSpacing.OnChange = nil
+    ReadOnly = True
+    TabOrder = 5
+    Left = 224
+    Height = 24
+    Hint = 'Sum of all above'
+    Top = 476
+    Width = 41
+  end
+  object EditEYBonus: TEdit
+    BorderSpacing.OnChange = nil
+    ReadOnly = True
+    TabOrder = 4
+    Left = 224
+    Height = 24
+    Hint = '100 points for each extra Yahtzee'
+    Top = 448
+    Width = 41
+  end
+  object EditTurnIndex: TEdit
+    BorderSpacing.OnChange = nil
+    ReadOnly = True
+    TabOrder = 6
+    Left = 272
+    Height = 21
+    Hint = 'Number of this turn'
+    Top = 8
+    Width = 25
+  end
+end

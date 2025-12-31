@@ -1,0 +1,40 @@
+program YahtzeeTester;
+  { Very simple frame for some tests }
+
+  { Copyright (c) 1999-2005 by Tom Verhoeff.
+
+    This file is part of YahtzeeTrainer.  YahtzeeTrainer helps play and analyze
+    solitaire games of Yahtzee.
+
+    YahtzeeTrainer is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    YahtzeeTrainer is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Scronpy; if not, write to the Free Software
+    Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+    Author's contact information: <mailto:Tom.Verhoeff@acm.org>.
+  }
+
+{$mode objfpc}{$H+}
+
+uses
+  Interfaces, // this includes the LCL widgetset
+  Forms
+  { add your units here },
+  YahtzeeTesterMain;
+
+begin
+  Application.Initialize;
+  TestAll;
+  Halt;
+  Application.Run;
+end.
+

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Yahtzee — Human vs Optimal AI</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header>
+        <h1>Yahtzee — Human vs Optimal AI</h1>
+        <div class="status">
+          <span id="loadStatus">Loading tables…</span>
+          <span id="turnStatus" style="margin-left:12px;">—</span>
+        </div>
+      </header>
+
+      <main>
+        <section class="help" style="background:#0f141c;border:1px solid #2a3342;border-radius:8px;padding:10px;color:#a7b0bc;">
+          <strong>How to play:</strong> Click Roll, then click dice to keep (they highlight). Roll again or score when Rolls left = 0. The best final category is highlighted. After you score, the computer plays automatically.
+        </section>
+        <section class="scoreboards">
+          <div class="board">
+            <h2>Human</h2>
+            <div id="humanScore" class="score"></div>
+          </div>
+          <div class="board">
+            <h2>Computer</h2>
+            <div id="aiScore" class="score"></div>
+          </div>
+        </section>
+
+        <section class="play">
+          <div class="controls">
+            <button id="newGameBtn">New Game</button>
+            <button id="rollBtn" disabled>Roll</button>
+            <button id="scoreBtn" disabled>Score Selected</button>
+          </div>
+
+          <div class="dice" id="dice"></div>
+
+          <div class="info">
+            <div>Rolls left: <span id="rollsLeft">3</span></div>
+            <div>Advice: <span id="advice">—</span></div>
+          </div>
+
+          <div class="ev" id="evPanel" style="display:none; margin-top:8px; color:#a7b0bc;">
+            <div style="font-size:13px; margin-bottom:4px;">Final-roll EV by category</div>
+            <div id="evList" style="display:grid; grid-template-columns: repeat(4, 1fr); gap:6px; font-size:12px;"></div>
+          </div>
+
+          <div class="categories">
+            <h3>Available Categories</h3>
+            <div id="categories"></div>
+          </div>
+        </section>
+
+        <section class="log">
+          <h3>Game Log</h3>
+          <pre id="log"></pre>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="logic.js"></script>
+    <script type="module" src="app.js"></script>
+  </body>
+  </html>

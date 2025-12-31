@@ -1,0 +1,130 @@
+object MainForm: TMainForm
+  Align = alTop
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsSingle
+  Caption = 'Yahtzee Trainer'
+  ClientHeight = 40
+  ClientWidth = 688
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Menu = MainMenu
+  OnClose = FormClose
+  OnCreate = FormCreate
+  PixelsPerInch = 75
+  ShowHint = True
+  TextHeight = 13
+  Visible = True
+  HorzScrollBar.Page = 687
+  VertScrollBar.Page = 39
+  Left = 402
+  Height = 64
+  Top = 159
+  Width = 688
+  object NewGameButton: TButton
+    BorderSpacing.OnChange = nil
+    Caption = 'New Game'
+    Enabled = False
+    OnClick = NewGameButtonClick
+    TabOrder = 0
+    Left = 8
+    Height = 25
+    Hint = 'Start a new game'
+    Top = 8
+    Width = 80
+  end
+  object NewAdvisorButton: TButton
+    BorderSpacing.OnChange = nil
+    Caption = 'New Advisor'
+    OnClick = NewAdvisorButtonClick
+    TabOrder = 1
+    Left = 200
+    Height = 25
+    Hint = 'Open new advisor window for current state'
+    Top = 8
+    Width = 80
+  end
+  object HintsButton: TButton
+    BorderSpacing.OnChange = nil
+    Caption = 'Enable Hints'
+    OnClick = HintsButtonClick
+    ParentShowHint = False
+    ShowHint = True
+    TabOrder = 2
+    Left = 104
+    Height = 25
+    Hint = 'Toggle Hints'
+    Top = 8
+    Width = 80
+  end
+  object MainMenu: TMainMenu
+    left = 632
+    top = 304
+    object FileMenu: TMenuItem
+      Caption = 'File'
+      object ExitMenuItem: TMenuItem
+        Caption = 'Exit'
+        OnClick = ExitMenuItemClick
+      end
+    end
+    object GameMenu: TMenuItem
+      Caption = 'Game'
+      object NewGameMenuItem: TMenuItem
+        Caption = 'New Game'
+        OnClick = NewGameMenuItemClick
+      end
+      object HintsMenuItem: TMenuItem
+        AutoCheck = True
+        Caption = 'Hints'
+        Hint = 'Switch between professional and amateur mode'
+        OnClick = HintsMenuItemClick
+      end
+    end
+    object DiceMenu: TMenuItem
+      Caption = 'Dice'
+      object FairMenuItem: TMenuItem
+        Caption = 'Fair'
+        Checked = True
+        RadioItem = True
+        OnClick = FairMenuItemClick
+        Tag = 1
+      end
+      object DemonicMenuItem: TMenuItem
+        Caption = 'Demonic'
+        RadioItem = True
+        OnClick = DemonicMenuItemClick
+        Tag = 4
+      end
+      object AngelicMenuItem: TMenuItem
+        Caption = 'Angelic'
+        RadioItem = True
+        OnClick = AngelicMenuItemClick
+        Tag = 5
+      end
+    end
+    object AdvisorMenu: TMenuItem
+      Caption = 'Advisor'
+      object NewAdvisorMenuItem: TMenuItem
+        Caption = 'New Advisor'
+        OnClick = NewAdvisorMenuItemClick
+      end
+    end
+    object TablesMenu: TMenuItem
+      Caption = 'Tables'
+      object SettingsMenuItem: TMenuItem
+        Caption = 'Settings...'
+        Hint = 'Create a score table'
+        OnClick = SettingsMenuItemClick
+      end
+    end
+    object WindowsMenu: TMenuItem
+      Caption = 'Windows'
+    end
+    object HelpMenu: TMenuItem
+      Caption = 'Help'
+      object AboutMenuItem: TMenuItem
+        Caption = 'About'
+        OnClick = AboutMenuItemClick
+      end
+    end
+  end
+end

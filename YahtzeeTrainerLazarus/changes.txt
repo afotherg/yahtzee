@@ -1,0 +1,5 @@
+changes in YahtzeeTrainer 1.2
+
+- bug with file paths fixed
+- new random generator
+- option to create tables added

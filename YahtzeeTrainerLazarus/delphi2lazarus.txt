@@ -1,0 +1,41 @@
+copy the *.dpr and all *.pas, *.dfm to fresh directory
+  *.res ??? not needed
+mv YahtzeeTrainer.dpr yahtzeetrainer.lpr
+open yahtzeetrainer.lpr in Lazarus IDE, creating a Lazarus GUI application
+convert *.pas units from Delphi to Lazarus
+
+In *.lfm:
+remove Font properties (especially from TEdit objects)
+
+In ScoreCards:
+change TScoreCard.SetHint -> TScoreCard.SetAspectHint
+change a in GS.free -> (a <= LastCategory) and (a in GS.free)
+
+in Main:
+change Bool --> Boolean  (could have used LTypes or such)
+
+In YahtzeeStateTables
+change rewrite(f, name)  -->  AssignFile(f, name); rewrite(f)
+change reset(f, name)  -->  AssignFile(f, name); reset(f)
+change close(f) --> CloseFile(f)
+
+In YahtzeeEventLists:
+proc MakeChoiceEList: exclude keep all dice
+
+Problems:
+
+TEdit.Font is not published (hence not in .lfm), hence cannot make them bold.
+  Worked around by setting fsBold within the application
+Don't know how to set monospaced font (in TMemo.Font to keep columns aligned)
+  Worked around by using TSynMemo instead
+TMemo.Lines.Strings in .lfm file does not work completely as it should.
+  Works in TSynMemo
+Cannot create multiple forms of the same type (Duplicate Name exception raised).
+  Lazarus got updated, now works when Application is made Owner
+ProgressBar not (yet) implemented in Lazarus?
+
+Extras
+
+Increased font size of dice values
+Added HELD above dice to indicate keeping status
+Added Windows menu

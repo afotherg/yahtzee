@@ -1,0 +1,41 @@
+{ This is an automatically generated lazarus resource file }
+
+LazarusResources.Add('TMainForm','FORMDATA',[
+  'TPF0'#9'TMainForm'#8'MainForm'#5'Align'#7#5'alTop'#11'BorderIcons'#11#12'biS'
+  +'ystemMenu'#10'biMinimize'#0#11'BorderStyle'#7#8'bsSingle'#7'Caption'#6#15'Y'
+  +'ahtzee Trainer'#12'ClientHeight'#2'('#11'ClientWidth'#3#176#2#11'Font.Heigh'
+  +'t'#2#245#9'Font.Name'#6#13'MS Sans Serif'#4'Menu'#7#8'MainMenu'#7'OnClose'#7
+  +#9'FormClose'#8'OnCreate'#7#10'FormCreate'#13'PixelsPerInch'#2'K'#8'ShowHint'
+  +#9#10'TextHeight'#2#13#7'Visible'#9#18'HorzScrollBar.Page'#3#175#2#18'VertSc'
+  +'rollBar.Page'#2''''#4'Left'#3#146#1#6'Height'#2'@'#3'Top'#3#159#0#5'Width'#3
+  +#176#2#0#7'TButton'#13'NewGameButton'#22'BorderSpacing.OnChange'#13#7'Captio'
+  +'n'#6#8'New Game'#7'Enabled'#8#7'OnClick'#7#18'NewGameButtonClick'#8'TabOrde'
+  +'r'#2#0#4'Left'#2#8#6'Height'#2#25#4'Hint'#6#16'Start a new game'#3'Top'#2#8
+  +#5'Width'#2'P'#0#0#7'TButton'#16'NewAdvisorButton'#22'BorderSpacing.OnChange'
+  +#13#7'Caption'#6#11'New Advisor'#7'OnClick'#7#21'NewAdvisorButtonClick'#8'Ta'
+  +'bOrder'#2#1#4'Left'#3#200#0#6'Height'#2#25#4'Hint'#6')Open new advisor wind'
+  +'ow for current state'#3'Top'#2#8#5'Width'#2'P'#0#0#7'TButton'#11'HintsButto'
+  +'n'#22'BorderSpacing.OnChange'#13#7'Caption'#6#12'Enable Hints'#7'OnClick'#7
+  +#16'HintsButtonClick'#14'ParentShowHint'#8#8'ShowHint'#9#8'TabOrder'#2#2#4'L'
+  +'eft'#2'h'#6'Height'#2#25#4'Hint'#6#12'Toggle Hints'#3'Top'#2#8#5'Width'#2'P'
+  +#0#0#9'TMainMenu'#8'MainMenu'#4'left'#3'x'#2#3'top'#3'0'#1#0#9'TMenuItem'#8
+  +'FileMenu'#7'Caption'#6#4'File'#0#9'TMenuItem'#12'ExitMenuItem'#7'Caption'#6
+  +#4'Exit'#7'OnClick'#7#17'ExitMenuItemClick'#0#0#0#9'TMenuItem'#8'GameMenu'#7
+  +'Caption'#6#4'Game'#0#9'TMenuItem'#15'NewGameMenuItem'#7'Caption'#6#8'New Ga'
+  +'me'#7'OnClick'#7#20'NewGameMenuItemClick'#0#0#9'TMenuItem'#13'HintsMenuItem'
+  +#9'AutoCheck'#9#7'Caption'#6#5'Hints'#4'Hint'#6',Switch between professional'
+  +' and amateur mode'#7'OnClick'#7#18'HintsMenuItemClick'#0#0#0#9'TMenuItem'#8
+  +'DiceMenu'#7'Caption'#6#4'Dice'#0#9'TMenuItem'#12'FairMenuItem'#7'Caption'#6
+  +#4'Fair'#7'Checked'#9#9'RadioItem'#9#7'OnClick'#7#17'FairMenuItemClick'#3'Ta'
+  +'g'#2#1#0#0#9'TMenuItem'#15'DemonicMenuItem'#7'Caption'#6#7'Demonic'#9'Radio'
+  +'Item'#9#7'OnClick'#7#20'DemonicMenuItemClick'#3'Tag'#2#4#0#0#9'TMenuItem'#15
+  +'AngelicMenuItem'#7'Caption'#6#7'Angelic'#9'RadioItem'#9#7'OnClick'#7#20'Ang'
+  +'elicMenuItemClick'#3'Tag'#2#5#0#0#0#9'TMenuItem'#11'AdvisorMenu'#7'Caption'
+  +#6#7'Advisor'#0#9'TMenuItem'#18'NewAdvisorMenuItem'#7'Caption'#6#11'New Advi'
+  +'sor'#7'OnClick'#7#23'NewAdvisorMenuItemClick'#0#0#0#9'TMenuItem'#10'TablesM'
+  +'enu'#7'Caption'#6#6'Tables'#0#9'TMenuItem'#16'SettingsMenuItem'#7'Caption'#6
+  +#11'Settings...'#4'Hint'#6#20'Create a score table'#7'OnClick'#7#21'Settings'
+  +'MenuItemClick'#0#0#0#9'TMenuItem'#11'WindowsMenu'#7'Caption'#6#7'Windows'#0
+  +#0#9'TMenuItem'#8'HelpMenu'#7'Caption'#6#4'Help'#0#9'TMenuItem'#13'AboutMenu'
+  +'Item'#7'Caption'#6#5'About'#7'OnClick'#7#18'AboutMenuItemClick'#0#0#0#0#0
+]);
