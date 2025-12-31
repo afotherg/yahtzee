@@ -41,20 +41,35 @@ function grandTotal(sc){
   return s;
 }
 
-function renderScoreboard(target, sc){
+function renderScoreboard(target, sc, isHuman){
   const container = el(target);
   container.innerHTML = '';
   for (let c=0;c<=Categories.Chance;c++) {
     const row = document.createElement('div'); row.className='row';
     const lab = document.createElement('div'); lab.className='label'; lab.textContent = CategoryNames[c];
+    const act = document.createElement('div');
+    // Action button only for human, category available, and after first roll
+    if (isHuman && humanGS.free.has(c) && rollsLeft < 3) {
+      const btn = document.createElement('button');
+      btn.className = 'actbtn';
+      const potential = applyScoreEvent(humanGS, countsOfRoll(humanRoll), c).score;
+      btn.textContent = `+${potential}`;
+      btn.title = `Score ${potential} in ${CategoryNames[c]}`;
+      btn.addEventListener('click', ()=> scoreHuman(c));
+      act.appendChild(btn);
+    } else {
+      // empty placeholder to keep grid alignment
+      act.textContent = '';
+    }
     const val = document.createElement('div'); val.className='value'; val.textContent = sc[c]==null ? '—' : sc[c];
-    row.appendChild(lab); row.appendChild(val);
+    row.appendChild(lab); row.appendChild(act); row.appendChild(val);
     container.appendChild(row);
   }
   const totalRow = document.createElement('div'); totalRow.className='row';
   const lab = document.createElement('div'); lab.className='label'; lab.textContent = 'Total';
   const val = document.createElement('div'); val.className='value'; val.textContent = grandTotal(sc);
-  totalRow.appendChild(lab); totalRow.appendChild(val);
+  const spacer = document.createElement('div'); spacer.textContent='';
+  totalRow.appendChild(lab); totalRow.appendChild(spacer); totalRow.appendChild(val);
   container.appendChild(totalRow);
 }
 
@@ -159,8 +174,8 @@ function newGame(){
 }
 
 function renderAll(){
-  renderScoreboard('humanScore', humanScoreCard);
-  renderScoreboard('aiScore', aiScoreCard);
+  renderScoreboard('humanScore', humanScoreCard, true);
+  renderScoreboard('aiScore', aiScoreCard, false);
   renderDice();
   renderCategories();
   el('rollsLeft').textContent = rollsLeft;
