@@ -1,4 +1,4 @@
-import { loadGstbl, loadGstblFromJson, initialGameState, Categories, CategoryNames, countsOfRoll, adviceForRoll, playAiTurn, formatKeepers, applyScoreEvent, finalCategoryEVs } from './logic.js?v=__VER__';
+import { loadGstbl, loadGstblFromJson, initialGameState, Categories, CategoryNames, countsOfRoll, adviceForRoll, playAiTurn, formatKeepers, applyScoreEvent, finalCategoryEVs, scoreCategory } from './logic.js?v=__VER__';
 
 const el = (id)=>document.getElementById(id);
 const logEl = el('log');
@@ -10,8 +10,10 @@ let rng = Math.random;
 // Game state
 let humanGS = null;
 let aiGS = null;
-let humanScoreCard = {}; // cat->score or null
+let humanScoreCard = {}; // cat->event score (may include bonus)
 let aiScoreCard = {};
+let humanCategoryRaw = {}; // cat->raw category score (no 35 upper bonus)
+let aiCategoryRaw = {};
 let humanRoll = [1,1,1,1,1];
 let keptMask = [false,false,false,false,false];
 let rollsLeft = 3;
@@ -44,6 +46,7 @@ function grandTotal(sc){
 function renderScoreboard(target, sc, isHuman){
   const container = el(target);
   container.innerHTML = '';
+  const rawMap = isHuman ? humanCategoryRaw : aiCategoryRaw;
   for (let c=0;c<=Categories.Chance;c++) {
     const row = document.createElement('div'); row.className='row';
     const lab = document.createElement('div'); lab.className='label';
@@ -53,22 +56,36 @@ function renderScoreboard(target, sc, isHuman){
     if (isHuman && humansTurn && humanGS.free.has(c) && rollsLeft < 3) {
       const btn = document.createElement('button');
       btn.className = 'actbtn';
-      const potential = applyScoreEvent(humanGS, countsOfRoll(humanRoll), c).score;
-      btn.textContent = `+${potential}`;
-      btn.title = `Score ${potential} in ${CategoryNames[c]}`;
+      const bag = countsOfRoll(humanRoll);
+      if (c <= Categories.Sixes) {
+        const raw = scoreCategory(bag, c);
+        const willAwardBonus = (humanGS.usneed > 0) && (raw >= humanGS.usneed);
+        btn.textContent = `+${raw}` + (willAwardBonus ? ' +35 bonus' : '');
+      } else {
+        const full = applyScoreEvent(humanGS, bag, c).score;
+        btn.textContent = `+${full}`;
+      }
       btn.addEventListener('click', ()=> scoreHuman(c));
       lab.appendChild(btn);
     }
-    const val = document.createElement('div'); val.className='value'; val.textContent = sc[c]==null ? '—' : sc[c];
+    const val = document.createElement('div'); val.className='value';
+    // For upper categories, prefer showing stored raw score (without 35 bonus) if available
+    if (c <= Categories.Sixes && rawMap[c] != null) {
+      val.textContent = rawMap[c];
+    } else {
+      val.textContent = sc[c]==null ? '—' : sc[c];
+    }
     row.appendChild(lab); row.appendChild(val);
     container.appendChild(row);
 
     // After Sixes, insert a single highlighted Upper Subtotal + Bonus row
     if (c === Categories.Sixes) {
+      const gsRef = isHuman ? humanGS : aiGS;
       const sub = sumUpper(sc);
-      const bonusVal = sub >= 63 ? 35 : '—';
+      const adjSub = (gsRef && gsRef.usneed === 0) ? (sub - 35) : sub;
+      const bonusVal = (gsRef && gsRef.usneed === 0) ? 35 : '—';
       const r = document.createElement('div'); r.className='row';
-      const l = document.createElement('div'); l.className='label hl'; l.textContent = `Upper Subtotal is ${sub}. Bonus of 35 if >=63`;
+      const l = document.createElement('div'); l.className='label hl'; l.textContent = `Upper Subtotal is ${adjSub}. Bonus of 35 if >=63`;
       const v = document.createElement('div'); v.className='value'; v.textContent = bonusVal;
       r.appendChild(l); r.appendChild(v);
       container.appendChild(r);
@@ -175,6 +192,7 @@ function updateAdvice(){
 function newGame(){
   humanGS = initialGameState(); aiGS = initialGameState();
   resetScoreCard(humanScoreCard); resetScoreCard(aiScoreCard);
+  humanCategoryRaw = {}; aiCategoryRaw = {};
   humansTurn = true; rollsLeft = 3; keptMask = [false,false,false,false,false];
   for (let i=0;i<5;i++) humanRoll[i]=1;
   renderAll();
@@ -232,8 +250,10 @@ function scoreHuman(cat){
   // apply scoring to humanGS; compute score with current roll
   const bag = countsOfRoll(humanRoll);
   const chosen = cat;
+  const raw = (chosen <= Categories.Sixes) ? scoreCategory(bag, chosen) : null;
   const { score, gsNew } = applyScoreEvent(humanGS, bag, chosen);
   humanScoreCard[chosen] = score;
+  if (raw != null) humanCategoryRaw[chosen] = raw;
   humanGS = gsNew;
   log(`Human scores ${score} in ${CategoryNames[chosen]}`);
   // next turn to AI
@@ -303,6 +323,9 @@ function aiTurnAnimated(){
     const bag = countsOfRoll(roll);
     const { score, gsNew } = applyScoreEvent(aiGS, bag, adv3.category);
     aiScoreCard[adv3.category] = score;
+    if (adv3.category <= Categories.Sixes) {
+      aiCategoryRaw[adv3.category] = scoreCategory(bag, adv3.category);
+    }
     aiGS = gsNew;
     log(`AI rolled ${roll.join(' ')} and scored ${score} in ${CategoryNames[adv3.category]}`);
     // back to human

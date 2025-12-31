@@ -186,7 +186,7 @@ for (let m=0;m<=5;m++) {
 }
 
 // Scoring for a bag
-function scoreCategory(bag, cat) {
+export function scoreCategory(bag, cat) {
   const weight = bag[0]*1 + bag[1]*2 + bag[2]*3 + bag[3]*4 + bag[4]*5 + bag[5]*6;
   const minNonZeroMult = Math.min(...bag.filter(x=>x>0), 5);
   const support = bag.filter(x=>x>0).length;
