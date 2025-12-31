@@ -89,7 +89,7 @@ function renderDieFace(container, value){
   // Use Unicode dice faces for robust rendering across browsers
   const faces = ['', '⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
   const span = document.createElement('span');
-  span.style.fontSize = '32px';
+  span.className = 'unicode-face';
   span.textContent = faces[value] || String(value);
   container.appendChild(span);
 }
