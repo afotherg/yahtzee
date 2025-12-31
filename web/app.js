@@ -86,12 +86,27 @@ function renderDieFace(container, value){
     container.appendChild(unk);
     return;
   }
-  // Use Unicode dice faces for robust rendering across browsers
-  const faces = ['', '⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
-  const span = document.createElement('span');
-  span.className = 'unicode-face';
-  span.textContent = faces[value] || String(value);
-  container.appendChild(span);
+  // Draw pips as absolutely positioned dots inside a face container
+  const face = document.createElement('div');
+  face.className = 'die-face';
+  const xs = [25, 50, 75];
+  const ys = [25, 50, 75];
+  const add = (r,c)=>{
+    const p=document.createElement('div');
+    p.className='pip';
+    p.style.left = xs[c-1] + '%';
+    p.style.top  = ys[r-1] + '%';
+    face.appendChild(p);
+  };
+  switch (value){
+    case 1: add(2,2); break;
+    case 2: add(1,1); add(3,3); break;
+    case 3: add(1,1); add(2,2); add(3,3); break;
+    case 4: add(1,1); add(1,3); add(3,1); add(3,3); break;
+    case 5: add(1,1); add(1,3); add(2,2); add(3,1); add(3,3); break;
+    case 6: add(1,1); add(1,3); add(2,1); add(2,3); add(3,1); add(3,3); break;
+  }
+  container.appendChild(face);
 }
 
 function renderCategories(){
