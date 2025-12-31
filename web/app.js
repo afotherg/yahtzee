@@ -1,4 +1,4 @@
-import { loadGstbl, initialGameState, Categories, CategoryNames, countsOfRoll, adviceForRoll, playAiTurn, formatKeepers, applyScoreEvent, finalCategoryEVs } from './logic.js';
+import { loadGstbl, loadGstblFromJson, initialGameState, Categories, CategoryNames, countsOfRoll, adviceForRoll, playAiTurn, formatKeepers, applyScoreEvent, finalCategoryEVs } from './logic.js';
 
 const el = (id)=>document.getElementById(id);
 const logEl = el('log');
@@ -261,14 +261,18 @@ el('scoreBtn').addEventListener('click', ()=>{
 (async function init(){
   const status = el('loadStatus');
   status.textContent = 'Loading optimal table…';
-  const paths = [
-    // When deployed to site root (GitHub Pages action copies gstbl/ alongside index.html)
-    'gstbl/OptEScore-Official.gstbl',
-    // When running from repo (opening /web/ directly or via localhost)
-    '../gstbl/OptEScore-Official.gstbl',
-  ];
+  const jsonPaths = [ 'gstbl/OptEScore-Official.json', '../gstbl/OptEScore-Official.json' ];
+  const binPaths = [ 'gstbl/OptEScore-Official.gstbl', '../gstbl/OptEScore-Official.gstbl' ];
   let lastErr = null;
-  for (const p of paths) {
+  for (const p of jsonPaths) {
+    try {
+      gstbl = await loadGstblFromJson(p);
+      status.textContent = 'Ready';
+      newGame();
+      return;
+    } catch (e) { lastErr = e; }
+  }
+  for (const p of binPaths) {
     try {
       gstbl = await loadGstbl(p);
       status.textContent = 'Ready';

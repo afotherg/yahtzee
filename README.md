@@ -38,7 +38,7 @@ This calibration step ensures the table is interpreted correctly on machines lik
 
 - From the repo root, serve files using any static server, then open `web/index.html`.
   - Example: `python3 -m http.server 8000` then go to `http://localhost:8000/web/`
-- The app fetches `../gstbl/OptEScore-Official.gstbl` relative to `web/`.
+- The app prefers `gstbl/OptEScore-Official.json` (canonical JSON). If not present, it falls back to the binary `OptEScore-Official.gstbl`.
 - The UI includes an “Advice” panel and a final-roll EV breakdown. The computer plays its turn automatically and optimally.
 
 ## GitHub Pages (static hosting)
@@ -53,7 +53,17 @@ Enable Pages in your repo:
 - Settings → Pages → Build and deployment → Source: GitHub Actions.
 - The action will publish to `https://<owner>.github.io/<repo>/` (or the private Pages URL if the repo is private and your plan supports private Pages).
 
-Note: The app’s loader tries both `gstbl/OptEScore-Official.gstbl` and `../gstbl/OptEScore-Official.gstbl` so it works both in local dev and on the published site.
+Note: The app’s loader tries JSON first (`gstbl/OptEScore-Official.json`), then falls back to the binary (`gstbl/OptEScore-Official.gstbl`) so it works both in local dev and on the published site.
+
+## Converting `.gstbl` to JSON
+
+To avoid binary parsing issues and ensure a canonical index order in the browser, convert the binary table to JSON once:
+
+```
+node scripts/convert-gstbl-to-json.mjs gstbl/OptEScore-Official.gstbl gstbl/OptEScore-Official.json
+```
+
+The converter will calibrate endianness and boolean-block order, then emit a canonical JSON with the data array in the standard index order expected by the web app.
 
 ## Tests
 
@@ -74,7 +84,7 @@ Open `web/tests.html` to run the browser tests:
 ## Repo structure
 
 - `web/` — client app, loader, and tests
-- `gstbl/` — precomputed optimal expected-score tables (binary)
+- `gstbl/` — precomputed optimal expected-score tables (binary) and optional JSON
 - `YahtzeeTrainerLazarus/` — Pascal sources for the original Yahtzee Trainer
 
 ## Acknowledgements

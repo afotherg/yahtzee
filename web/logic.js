@@ -109,6 +109,20 @@ export async function loadGstbl(url) {
   return chosen.arr;
 }
 
+export async function loadGstblFromJson(url) {
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`Failed to load JSON table: ${resp.status}`);
+  const j = await resp.json();
+  if (!j || !Array.isArray(j.data)) {
+    throw new Error('Invalid JSON table format');
+  }
+  // JSON is in canonical order; ensure we use normal boolean order mapping
+  __useReversedBoolOrder = false;
+  const arr = new Float64Array(j.data.length);
+  for (let i=0;i<j.data.length;i++) arr[i] = j.data[i];
+  return arr;
+}
+
 // Utility: convert a 5-dice roll to counts array [6] where sum=5
 export function countsOfRoll(roll) {
   // roll: array of 5 integers in [1..6]
