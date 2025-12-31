@@ -30,6 +30,10 @@ jobs:
           cp -R web/* _site/
           mkdir -p _site/gstbl
           cp -R gstbl/* _site/gstbl/
+          # Inject cache-busting version based on short SHA
+          VER=${GITHUB_SHA::7}
+          echo "Using version: $VER"
+          grep -rl "__VER__" _site | xargs sed -i "s/__VER__/$VER/g" || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
@@ -46,4 +50,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
