@@ -48,6 +48,7 @@ function renderScoreboard(target, sc, isHuman){
     const row = document.createElement('div'); row.className='row';
     const lab = document.createElement('div'); lab.className='label'; lab.textContent = CategoryNames[c];
     const act = document.createElement('div');
+    act.className = 'actcell';
     // Action button only for human, category available, and after first roll
     if (isHuman && humanGS.free.has(c) && rollsLeft < 3) {
       const btn = document.createElement('button');

@@ -18,15 +18,18 @@ main { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 16px; max-
 .scoreboards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .board { background: var(--panel); padding: 12px; border-radius: 8px; }
 .board h2 { margin: 0 0 8px 0; font-size: 16px; }
-.score { display: grid; grid-template-columns: auto auto 1fr; gap: 6px 8px; font-size: 14px; align-items: center; }
+.score { display: grid; grid-template-columns: auto auto 1fr; gap: 4px 6px; font-size: 13px; align-items: center; grid-auto-rows: 24px; }
 .score .row { display: contents; }
-.score .label { color: var(--muted); }
-.score .value { text-align: right; }
+.score .label { color: var(--muted); white-space: nowrap; }
+.score .value { text-align: right; white-space: nowrap; }
 
 /* Action button between category name and current score */
-.actbtn { font-size: 12px; padding: 4px 8px; border-radius: 6px; border: 1px solid #d0d7e2; background: #eef3fb; color: #0e1116; cursor: pointer; }
+.actbtn { font-size: 12px; padding: 0 6px; height: 20px; line-height: 20px; border-radius: 6px; border: 1px solid #d0d7e2; background: #eef3fb; color: #0e1116; cursor: pointer; display: inline-flex; align-items: center; }
 .actbtn:hover { filter: brightness(0.97); }
 .actbtn:disabled { opacity: .55; cursor: not-allowed; }
+
+/* Ensure action cell reserves space even if empty */
+.actcell { min-height: 20px; }
 
 .play { background: var(--panel); padding: 12px; border-radius: 8px; }
 .controls { display: flex; gap: 8px; margin-bottom: 8px; }
